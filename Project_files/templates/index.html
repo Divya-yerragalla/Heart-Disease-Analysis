@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Heart Disease Analysis</title>
+
+<style>
+
+body{
+margin:0;
+font-family: 'Segoe UI', Arial, sans-serif;
+background-color:#f5f7fa;
+color:#2b1d16;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 80px;
+background:white;
+box-shadow:0px 2px 8px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#2b1d16;
+}
+
+/* NAVBAR */
+
+nav{
+margin-left:auto;
+}
+
+nav a{
+margin:0 10px;
+text-decoration:none;
+color:white;
+font-size:16px;
+background:#e85d2a;
+padding:10px 18px;
+border-radius:25px;
+display:inline-block;
+transition:all 0.3s ease;
+}
+
+nav a:hover{
+background:#cf4c1f;
+transform:translateY(-2px);
+}
+
+/* HERO SECTION */
+
+.hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:80px;
+}
+
+.hero-text{
+width:50%;
+animation:fadeInLeft 1s ease;
+}
+
+.hero-text h1{
+font-size:55px;
+color:#2b1d16;
+}
+
+.hero-text p{
+font-size:18px;
+color:#666;
+line-height:28px;
+margin-top:15px;
+}
+
+/* CTA BUTTON */
+
+.hero-btn{
+display:inline-block;
+margin-top:20px;
+background:#e85d2a;
+color:white;
+padding:12px 25px;
+border-radius:25px;
+text-decoration:none;
+font-size:15px;
+transition:0.3s;
+}
+
+.hero-btn:hover{
+background:#cf4c1f;
+transform:scale(1.05);
+}
+
+/* IMAGE */
+
+.hero img{
+width:700px;
+border-radius:20px;
+box-shadow:0px 10px 25px rgba(0,0,0,0.08);
+animation:fadeInRight 1s ease;
+}
+
+.hero img:hover{
+transform:translateY(-5px);
+transition:0.3s;
+}
+
+/* ABOUT PROJECT SECTION */
+
+.section{
+padding:60px 120px;
+background:white;
+animation:fadeInUp 1s ease;
+}
+
+.section h2{
+text-align:center;
+font-size:35px;
+color:#2b1d16;
+}
+
+.section p{
+text-align:center;
+font-size:18px;
+color:#666;
+margin-top:20px;
+line-height:30px;
+max-width:900px;
+margin-left:auto;
+margin-right:auto;
+}
+
+/* FOOTER */
+
+footer{
+background:#2b1d16;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeInLeft{
+from{
+opacity:0;
+transform:translateX(-40px);
+}
+to{
+opacity:1;
+transform:translateX(0);
+}
+}
+
+@keyframes fadeInRight{
+from{
+opacity:0;
+transform:translateX(40px);
+}
+to{
+opacity:1;
+transform:translateX(0);
+}
+}
+
+@keyframes fadeInUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+HeartCare
+</div>
+
+<nav>
+
+<a href="/">Home</a>
+<a href="/dashboard">Dashboard</a>
+<a href="/stories">Stories</a>
+<a href="/prediction_page">Prediction</a>
+<a href="/about">About Us</a>
+<a href="/contact">Contact Us</a>
+
+</nav>
+
+</header>
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>Cardiovascular Risk Analysis</h1>
+
+<p>
+A data-driven platform for cardiovascular risk assessment powered by advanced machine learning models. 
+The system evaluates critical health, behavioral, and clinical indicators to generate accurate risk predictions 
+and actionable insights. Designed to support early detection and preventive care, it enables users to make 
+informed decisions about their heart health.
+</p>
+
+<button onclick="window.location.href='/prediction_page'" class="hero-btn">
+  Check Your Risk
+</button>
+</div>
+
+<img src="/static/img/heart.png">
+
+</section>
+
+<!-- PROJECT DESCRIPTION -->
+
+<section class="section">
+
+<h2>About This Project</h2>
+
+<p>
+This project presents an intelligent cardiovascular risk analysis system that integrates machine learning with 
+interactive data visualization. The platform identifies and evaluates key health and lifestyle factors influencing 
+heart disease through predictive modeling techniques.
+
+By leveraging structured healthcare data, the system analyzes parameters such as age, BMI, physical activity, 
+medical history, and behavioral patterns to estimate risk levels with high reliability. The machine learning model 
+is trained on real-world datasets to ensure meaningful predictions and consistent performance.
+
+The application is developed using HTML, CSS, and Flask, providing a clean and user-friendly interface for exploring 
+insights, visual dashboards, and personalized risk assessments. The primary objective is to enhance awareness, support 
+early diagnosis, and promote proactive healthcare decisions.
+</p>
+
+</section>
+
+<footer>
+Cardiovascular Risk Analysis Project © 2026
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Heart Disease Prediction</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f8f5f2;
+margin:0;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 80px;
+background:white;
+box-shadow:0px 2px 8px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#2b1d16;
+}
+
+/* NAVBAR */
+
+nav{
+margin-left:auto;
+}
+
+nav a{
+margin:0 10px;
+text-decoration:none;
+color:white;
+font-size:16px;
+background:#e85d2a;
+padding:10px 18px;
+border-radius:25px;
+display:inline-block;
+transition:all 0.3s ease;
+}
+
+nav a:hover{
+background:#cf4c1f;
+transform:translateY(-2px);
+}
+
+/* FORM CARD */
+
+.container{
+width:950px;
+margin:60px auto;
+background:white;
+padding:40px;
+border-radius:10px;
+box-shadow:0px 5px 20px rgba(0,0,0,0.08);
+}
+
+h2{
+text-align:center;
+margin-bottom:30px;
+}
+
+/* GRID LAYOUT */
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px 40px;
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+}
+
+.full{
+grid-column:1 / span 2;
+}
+
+label{
+font-weight:bold;
+margin-bottom:5px;
+}
+
+input,select{
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+font-family:Arial;
+font-size:14px;
+}
+
+input:focus, select:focus{
+outline:none;
+border-color:#e85d2a;
+}
+
+button.predict-btn{
+width:100%;
+padding:14px;
+margin-top:30px;
+background:#e85d2a;
+color:white;
+border:none;
+font-size:16px;
+border-radius:25px;
+cursor:pointer;
+font-family:Arial;
+}
+
+button.predict-btn:hover{
+background:#cf4c1f;
+}
+
+#result{
+margin-top:20px;
+text-align:center;
+font-weight:bold;
+color:#e85d2a;
+}
+
+h3{
+color:#e85d2a;
+margin-top:30px;
+border-bottom:1px solid #eee;
+padding-bottom:5px;
+}
+
+/* ── STEP BAR ── */
+
+.step-bar-wrap{
+display:flex;
+flex-direction:column;
+}
+
+.step-bar-hint{
+font-size:12px;
+color:#999;
+margin-bottom:8px;
+font-weight:normal;
+}
+
+.step-bar{
+display:flex;
+border-radius:5px;
+overflow:hidden;
+border:1px solid #ccc;
+}
+
+.step-btn{
+flex:1;
+padding:10px 4px;
+background:white;
+border:none;
+border-right:1px solid #ccc;
+cursor:pointer;
+font-size:13px;
+font-family:Arial;
+color:#555;
+transition:background 0.15s, color 0.15s;
+text-align:center;
+line-height:1.3;
+}
+
+.step-btn:last-child{
+border-right:none;
+}
+
+.step-btn:hover{
+background:#fde8df;
+color:#e85d2a;
+}
+
+.step-btn.active{
+background:#e85d2a;
+color:white;
+font-weight:bold;
+}
+
+.step-selected-val{
+font-size:12px;
+color:#e85d2a;
+font-weight:bold;
+margin-top:5px;
+min-height:16px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">HeartCare</div>
+
+<nav>
+<a href="/">Home</a>
+<a href="/dashboard">Dashboard</a>
+<a href="/story">Stories</a>
+<a href="/prediction_page">Prediction</a>
+<a href="/about">About</a>
+<a href="/contact">Contact</a>
+</nav>
+
+</header>
+
+
+<div class="container">
+
+<h2>Heart Disease Prediction</h2>
+
+<div class="form-grid">
+
+<!-- ── PERSONAL INFORMATION ── -->
+<h3 class="full">Personal Information</h3>
+
+<div class="form-group">
+<label>Sex</label>
+<select id="Sex">
+<option value="">Select</option>
+<option value="1">Male</option>
+<option value="0">Female</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Age Category</label>
+<select id="AgeCategory">
+<option value="">Select</option>
+<option value="1">18–24</option>
+<option value="2">25–29</option>
+<option value="3">30–34</option>
+<option value="4">35–39</option>
+<option value="5">40–44</option>
+<option value="6">45–49</option>
+<option value="7">50–54</option>
+<option value="8">55–59</option>
+<option value="9">60–64</option>
+<option value="10">65–69</option>
+<option value="11">70–74</option>
+<option value="12">75–79</option>
+<option value="13">80 or older</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>BMI</label>
+<input type="number" id="BMI" placeholder="e.g. 24.5" step="0.1" min="10" max="100">
+</div>
+
+<div class="form-group">
+<label>General Health</label>
+<select id="GenHealth">
+<option value="">Select</option>
+<option value="1">Poor</option>
+<option value="2">Fair</option>
+<option value="3">Good</option>
+<option value="4">Very Good</option>
+<option value="5">Excellent</option>
+</select>
+</div>
+
+<!-- ── LIFESTYLE ── -->
+<h3 class="full">Lifestyle</h3>
+
+<div class="form-group">
+<label>Smoking</label>
+<select id="Smoking">
+<option value="">Select</option>
+<option value="1">Yes</option>
+<option value="0">No</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Alcohol Drinking</label>
+<select id="AlcoholDrinking">
+<option value="">Select</option>
+<option value="1">Yes</option>
+<option value="0">No</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Physical Activity</label>
+<select id="PhysicalActivity">
+<option value="">Select</option>
+<option value="1">Yes</option>
+<option value="0">No</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Difficulty Walking</label>
+<select id="DiffWalking">
+<option value="">Select</option>
+<option value="1">Yes</option>
+<option value="0">No</option>
+</select>
+</div>
+
+<!-- Sleep Time — step bar, full width -->
+<div class="step-bar-wrap full">
+<label>Sleep Time (hours per night)</label>
+<div class="step-bar-hint">Tap how many hours you usually sleep each night</div>
+<div class="step-bar" id="sleepBar">
+<button type="button" class="step-btn" onclick="selectStep('sleepBar','SleepTime',4,'4 hrs or less')">≤ 4 hrs</button>
+<button type="button" class="step-btn" onclick="selectStep('sleepBar','SleepTime',5,'5 hrs')">5 hrs</button>
+<button type="button" class="step-btn" onclick="selectStep('sleepBar','SleepTime',6,'6 hrs')">6 hrs</button>
+<button type="button" class="step-btn" onclick="selectStep('sleepBar','SleepTime',7,'7 hrs')">7 hrs</button>
+<button type="button" class="step-btn" onclick="selectStep('sleepBar','SleepTime',8,'8 hrs')">8 hrs</button>
+<button type="button" class="step-btn" onclick="selectStep('sleepBar','SleepTime',9,'9 hrs')">9 hrs</button>
+<button type="button" class="step-btn" onclick="selectStep('sleepBar','SleepTime',10,'10 hrs or more')">≥ 10 hrs</button>
+</div>
+<div class="step-selected-val" id="sleepVal">— select a value above</div>
+<input type="hidden" id="SleepTime" value="">
+</div>
+
+<!-- Physical Health — step bar, full width -->
+<div class="step-bar-wrap full">
+<label>Physical Health &nbsp;—&nbsp; Poor days in the last 30 days</label>
+<div class="step-bar-hint">How many days in the past month did you feel physically unwell?</div>
+<div class="step-bar" id="physBar">
+<button type="button" class="step-btn" onclick="selectStep('physBar','PhysicalHealth',0,'0 days')">0 days</button>
+<button type="button" class="step-btn" onclick="selectStep('physBar','PhysicalHealth',3,'1–5 days')">1–5 days</button>
+<button type="button" class="step-btn" onclick="selectStep('physBar','PhysicalHealth',8,'6–10 days')">6–10 days</button>
+<button type="button" class="step-btn" onclick="selectStep('physBar','PhysicalHealth',13,'11–15 days')">11–15 days</button>
+<button type="button" class="step-btn" onclick="selectStep('physBar','PhysicalHealth',20,'16–25 days')">16–25 days</button>
+<button type="button" class="step-btn" onclick="selectStep('physBar','PhysicalHealth',30,'26–30 days')">26–30 days</button>
+</div>
+<div class="step-selected-val" id="physVal">— select a value above</div>
+<input type="hidden" id="PhysicalHealth" value="">
+</div>
+
+<!-- Mental Health — step bar, full width -->
+<div class="step-bar-wrap full">
+<label>Mental Health &nbsp;—&nbsp; Poor days in the last 30 days</label>
+<div class="step-bar-hint">How many days in the past month did you feel mentally stressed or unwell?</div>
+<div class="step-bar" id="mentBar">
+<button type="button" class="step-btn" onclick="selectStep('mentBar','MentalHealth',0,'0 days')">0 days</button>
+<button type="button" class="step-btn" onclick="selectStep('mentBar','MentalHealth',3,'1–5 days')">1–5 days</button>
+<button type="button" class="step-btn" onclick="selectStep('mentBar','MentalHealth',8,'6–10 days')">6–10 days</button>
+<button type="button" class="step-btn" onclick="selectStep('mentBar','MentalHealth',13,'11–15 days')">11–15 days</button>
+<button type="button" class="step-btn" onclick="selectStep('mentBar','MentalHealth',20,'16–25 days')">16–25 days</button>
+<button type="button" class="step-btn" onclick="selectStep('mentBar','MentalHealth',30,'26–30 days')">26–30 days</button>
+</div>
+<div class="step-selected-val" id="mentVal">— select a value above</div>
+<input type="hidden" id="MentalHealth" value="">
+</div>
+
+<!-- ── MEDICAL CONDITIONS ── -->
+<h3 class="full">Medical Conditions</h3>
+
+<div class="form-group">
+<label>Stroke</label>
+<select id="Stroke">
+<option value="">Select</option>
+<option value="1">Yes</option>
+<option value="0">No</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Diabetic</label>
+<select id="Diabetic">
+<option value="">Select</option>
+<option value="1">Yes</option>
+<option value="0">No</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Asthma</label>
+<select id="Asthma">
+<option value="">Select</option>
+<option value="1">Yes</option>
+<option value="0">No</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Kidney Disease</label>
+<select id="KidneyDisease">
+<option value="">Select</option>
+<option value="1">Yes</option>
+<option value="0">No</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Skin Cancer</label>
+<select id="SkinCancer">
+<option value="">Select</option>
+<option value="1">Yes</option>
+<option value="0">No</option>
+</select>
+</div>
+
+</div><!-- end form-grid -->
+
+<button class="predict-btn" onclick="predict()">Predict Risk</button>
+
+<div id="result"></div>
+
+</div><!-- end container -->
+
+
+<script>
+
+function selectStep(barId, inputId, val, label) {
+  document.querySelectorAll('#' + barId + ' .step-btn').forEach(function(btn){
+    btn.classList.remove('active');
+  });
+  event.currentTarget.classList.add('active');
+  document.getElementById(inputId).value = val;
+  var valElMap = { sleepBar:'sleepVal', physBar:'physVal', mentBar:'mentVal' };
+  var el = document.getElementById(valElMap[barId]);
+  if(el) el.textContent = 'Selected: ' + label;
+}
+
+function predict(){
+
+  var Sex             = document.getElementById("Sex");
+  var AgeCategory     = document.getElementById("AgeCategory");
+  var BMI             = document.getElementById("BMI");
+  var GenHealth       = document.getElementById("GenHealth");
+  var Smoking         = document.getElementById("Smoking");
+  var AlcoholDrinking = document.getElementById("AlcoholDrinking");
+  var PhysicalActivity= document.getElementById("PhysicalActivity");
+  var DiffWalking     = document.getElementById("DiffWalking");
+  var SleepTime       = document.getElementById("SleepTime");
+  var PhysicalHealth  = document.getElementById("PhysicalHealth");
+  var MentalHealth    = document.getElementById("MentalHealth");
+  var Stroke          = document.getElementById("Stroke");
+  var Diabetic        = document.getElementById("Diabetic");
+  var Asthma          = document.getElementById("Asthma");
+  var KidneyDisease   = document.getElementById("KidneyDisease");
+  var SkinCancer      = document.getElementById("SkinCancer");
+
+  var resultEl = document.getElementById("result");
+
+  // VALIDATION
+  if(
+    !Sex.value || !AgeCategory.value || !BMI.value || !GenHealth.value ||
+    !Smoking.value || !AlcoholDrinking.value || !PhysicalActivity.value ||
+    !DiffWalking.value || !SleepTime.value || !PhysicalHealth.value ||
+    !MentalHealth.value || !Stroke.value || !Diabetic.value ||
+    !Asthma.value || !KidneyDisease.value || !SkinCancer.value
+  ){
+    resultEl.innerHTML = "&#9888; Please fill in all fields before submitting.";
+    return;
+  }
+
+  resultEl.innerHTML = "Analysing...";
+
+  var data = {
+    BMI:             Number(BMI.value),
+    Smoking:         Number(Smoking.value),
+    AlcoholDrinking: Number(AlcoholDrinking.value),
+    Stroke:          Number(Stroke.value),
+    Sex:             Number(Sex.value),
+    AgeCategory:     Number(AgeCategory.value),
+    Diabetic:        Number(Diabetic.value),
+    PhysicalActivity:Number(PhysicalActivity.value),
+    SleepTime:       Number(SleepTime.value),
+    Asthma:          Number(Asthma.value),
+    KidneyDisease:   Number(KidneyDisease.value),
+    DiffWalking:     Number(DiffWalking.value),
+    GenHealth:       Number(GenHealth.value),
+    PhysicalHealth:  Number(PhysicalHealth.value),
+    MentalHealth:    Number(MentalHealth.value),
+    SkinCancer:      Number(SkinCancer.value)
+  };
+
+  fetch("/prediction", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data)
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(result){
+    console.log("API RESULT:", result);
+    // Save to localStorage as backup
+    localStorage.setItem("prediction",  result.prediction);
+    localStorage.setItem("probability", result.probability);
+    localStorage.setItem("inputData",   JSON.stringify(data));
+    // Pass via URL params so result page always has fresh data
+    var params = new URLSearchParams({
+      prediction:  result.prediction,
+      probability: result.probability,
+      inputData:   encodeURIComponent(JSON.stringify(data))
+    });
+    window.location.href = "/result?" + params.toString();
+  })
+  .catch(function(err){
+    console.error(err);
+    resultEl.innerHTML = "Prediction failed. Please try again.";
+  });
+
+}
+
+</script>
+
+</body>
+</html>

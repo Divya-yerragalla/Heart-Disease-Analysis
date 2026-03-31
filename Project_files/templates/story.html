@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Story</title>
+
+<style>
+
+body{
+margin:0;
+font-family: Arial, Helvetica, sans-serif;
+background-color:#f8f5f2;
+}
+
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 80px;
+background:white;
+box-shadow:0px 2px 8px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#2b1d16;
+}
+
+/* NAVBAR */
+
+nav{
+margin-left:auto;
+}
+
+nav a{
+margin:0 10px;
+text-decoration:none;
+color:white;
+font-size:16px;
+background:#e85d2a;
+padding:10px 18px;
+border-radius:25px;
+display:inline-block;
+transition:all 0.3s ease;
+}
+
+nav a:hover{
+background:#cf4c1f;
+transform:translateY(-2px);
+}
+
+/* NAVBAR BUTTONS */
+
+nav{
+margin-left:auto;
+}
+
+nav a{
+
+margin:0 10px;
+text-decoration:none;
+color:white;
+font-size:16px;
+background:#e85d2a;
+padding:10px 18px;
+border-radius:25px;
+display:inline-block;
+
+}
+
+nav a:hover{
+background:#cf4c1f;
+}
+
+
+
+/* TITLE */
+
+.title{
+
+text-align:center;
+padding:40px;
+
+}
+
+.title h1{
+
+font-size:45px;
+color:#2b1d16;
+
+}
+
+
+/* STORY AREA */
+
+.story-box{
+
+width:85%;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0px 3px 10px rgba(0,0,0,0.1);
+
+margin-bottom:40px;
+
+}
+
+
+/* POINTS */
+
+.points{
+
+width:80%;
+margin:auto;
+margin-top:40px;
+font-size:18px;
+color:#444;
+line-height:30px;
+
+}
+
+.points h3{
+
+color:#2b1d16;
+margin-top:20px;
+
+}
+
+
+
+/* FOOTER */
+
+footer{
+
+background:#2b1d16;
+color:white;
+text-align:center;
+padding:20px;
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<header>
+
+<div class="logo">
+HeartCare
+</div>
+
+
+<nav>
+
+<a href="/">Home</a>
+
+<a href="/dashboard">Dashboards</a>
+
+<a href="/story">Story</a>
+
+<a href="/prediction_page">Prediction</a>
+
+<a href="/contact">Contact Us</a>
+
+<a href="/about">About Us</a>
+
+</nav>
+
+</header>
+
+
+
+<div class="title">
+
+<h1>Heart Disease Analysis Story</h1>
+
+</div>
+
+
+
+<!-- TABLEAU STORY (Same method as dashboards) -->
+
+<div class="story-box">
+
+
+<div class='tableauPlaceholder' id='viz1772280385161' style='position: relative'>
+
+<noscript>
+<img src='https://public.tableau.com/static/images/He/Heartdisease_dashboard/HeartDisease_Story/1_rss.png'>
+</noscript>
+
+<object class='tableauViz' style='display:none;'>
+
+<param name='host_url' value='https://public.tableau.com/' />
+
+<param name='name' value='Heartdisease_dashboard/HeartDisease_Story' />
+
+<param name='tabs' value='no' />
+
+<param name='toolbar' value='yes' />
+
+</object>
+
+</div>
+
+
+</div>
+
+
+
+<!-- SCRIPT -->
+
+<script>
+
+var viz = document.getElementById('viz1772280385161').getElementsByTagName('object')[0];
+
+viz.style.width='90%';
+viz.style.height='600px';
+
+var scriptElement=document.createElement('script');
+scriptElement.src='https://public.tableau.com/javascripts/api/viz_v1.js';
+document.body.appendChild(scriptElement);
+
+</script>
+
+
+
+<!-- STORY EXPLANATION -->
+
+<div class="points">
+
+<h3>1. First, we understand the overall heart disease distribution.</h3>
+
+<h3>2. Heart disease risk increases with age.</h3>
+
+<h3>3. We compare how heart disease varies between males and females.</h3>
+
+<h3>4. Smoking significantly increases heart disease risk.</h3>
+
+<h3>5. People with low physical activity show higher risk.</h3>
+
+<h3>6. Diabetes increases the risk of stroke and heart complications.</h3>
+
+</div>
+
+
+
+<footer>
+
+cardiovascular risk Project © 2026
+
+</footer>
+
+
+</body>
+
+</html>
